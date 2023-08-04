@@ -1,0 +1,69 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>Incoming mails</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Incoming Mails for {{ gmail_account }}</h1>
+        {% if incoming_mails %}
+          <div class="row">
+            {% for mail in incoming_mails %}
+            <div class="col-md-6 mb-4">
+              <div class="card">
+                <div class="card-header">
+                  <p><strong>Sender Name:</strong> {{ mail.sender_name }}</p>
+                  <p><strong>From:</strong> {{ mail.sender_email }}</p>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title"><strong>Subject:</strong> {{ mail.subject }}</h6>
+                  <p class="card-text text-muted"><strong>Date:</strong> {{ mail.date }}</p>
+                  <br>
+                  {% if mail.body|length <= 500 %}
+                      <strong>Body:</strong> {{ mail.body }}
+                  {% else %}
+                      <strong>Body:</strong> {{ mail.body|safe|truncatechars:500 }}
+                      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#mailModal{{ forloop.counter }}">See More</button>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <!-- Modal for displaying full email body -->
+        <div class="modal fade" id="mailModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="mailModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="mailModalLabel">Full Email Body</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      {{ mail.body|safe }}
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="alert alert-info" role="alert">
+            No emails found for this account.
+          </div>
+        {% endif %}
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

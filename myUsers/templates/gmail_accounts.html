@@ -1,0 +1,38 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>Gmail Accounts</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-md-6">
+                <h2 class="mb-4">Google Gmail Accounts</h2>
+                <ul class="nav">
+                    {% for gmail_account in google_gmail_accounts %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'gmail_incoming_mails' gmail_account %}">{{ gmail_account }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h2 class="mb-4">Microsoft Gmail Accounts</h2>
+                <ul class="nav">
+                    {% for gmail_account in microsoft_gmail_accounts %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'microsoft_incoming_mails' gmail_account %}">{{ gmail_account }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

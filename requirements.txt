@@ -1,0 +1,29 @@
+First create a virtual environment if you run this project on your local device. After that install all the below libraries.
+
+(1) Django: The web framework for building the Django project.
+
+	pip install django
+
+(2) google-auth: Required for working with Google OAuth 2.0 authentication.
+
+	pip install google-auth
+
+(3) google-auth-httplib2: Required for working with Google APIs using the httplib2 library.
+
+	pip install google-auth-httplib2
+
+(4) google-auth-oauthlib: Required for handling OAuth 2.0 authentication flow for Google APIs.
+
+	pip install google-auth-oauthlib
+
+(5) google-api-python-client: Required for working with Google APIs in Python.
+
+	pip install google-api-python-client
+
+(6) django-microsoft-auth: Required for integrating Microsoft OAuth 2.0 authentication with Django.
+
+	pip install django-microsoft-auth
+
+(7) For working with Microsoft OAuth 2.0 authentication, you will also need to install the msal library. msal stands for Microsoft Authentication Library
+
+	pip install msal
